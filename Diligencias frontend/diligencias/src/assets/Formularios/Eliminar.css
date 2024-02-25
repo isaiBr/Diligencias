@@ -1,0 +1,65 @@
+.principal-eliminar{
+  padding: 20px;
+  width: 350px;
+  height: 350px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.principal-eliminar
+.logo-advertencia{
+  width: 50px;
+  height: auto;
+}
+
+.principal-eliminar
+h2{
+  width:90%;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0 5px 0;
+}
+
+.principal-eliminar
+p{
+  width:80%;
+  font-size: 15px;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.principal-eliminar
+button{
+  width: 100px;
+  border: none;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.principal-eliminar
+button.confirmar{
+  color: white;
+  background-color: #2E2E38;
+}
+.principal-eliminar
+button.confirmar:hover{
+  background-color: #9d9dab;
+}
+
+.principal-eliminar
+button.cancelar{
+  color: #2E2E38;
+  background-color: white;
+  border: 1px solid #2E2E38;
+}
+.principal-eliminar
+button.cancelar:hover{
+  background-color: #9d9dab;
+  border: 1px solid #9d9dab;
+  color: white;
+}

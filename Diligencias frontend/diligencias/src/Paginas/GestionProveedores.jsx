@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../assets/Paginas/GestionProveedores.css'
 import { ModalBg } from '../Modales/ModalBg';
 import { Proveedor } from '../Formularios/Proveedor';
+import Eliminar from '../Formularios/Eliminar';
 
 function GestionProveedores() {
 
@@ -16,14 +17,22 @@ function GestionProveedores() {
     // Agrega más elementos según sea necesario
   ];
 
-  const [openModal, setOpenModal] = useState(false);
+  const [tipo, setTipo] = useState('nuevo');
+
+  const [openModalProveedor, setOpenModalProveedor] = useState(false);
+  const [openModalEliminar, setOpenModalEliminar] = useState(false);
+
+  const abrirModalProveedores = (tipo) =>{
+    setTipo(tipo);
+    setOpenModalProveedor(true);
+  }
 
   return (
     <div className='principal-proveedores'>
       <div className='superior'>
         <input type='text' className='buscador' placeholder='Ingresar proveedor'/>
         <button style={{ width: '150px'}}
-          onClick={()=>setOpenModal(true)}>Nuevo proveedor</button>
+          onClick={()=>abrirModalProveedores('nuevo')}>Nuevo proveedor</button>
       </div>
       <div className='lista-proveedores'>
         <table className='tabla-proveedores'>
@@ -43,11 +52,11 @@ function GestionProveedores() {
                   <td className='nombre'>{elemento.nombre}</td>
                   <td className='ultima-edicion'>{elemento.ultimaActualizacion}</td>
                   <td className='opciones'>
-                    <button onClick={()=>setOpenModal(true)}
+                    <button onClick={()=>abrirModalProveedores('ver',elemento)}
                       style={{ width: '50px'}}>Ver</button>
-                    <button onClick={()=>setOpenModal(true)}
+                    <button onClick={()=>abrirModalProveedores('editar',elemento)}
                       style={{ width: '70px'}}>Editar</button>
-                    <button onClick={()=>setOpenModal(true)}
+                    <button onClick={()=>setOpenModalEliminar(true)}
                       style={{ width: '80px'}}>Eliminar</button>
                     <button onClick={()=>setOpenModal(true)}
                       style={{ width: '90px'}}>Screening</button>
@@ -59,9 +68,15 @@ function GestionProveedores() {
         </table>
       </div>
       {
-        openModal &&
+        openModalProveedor &&
         <ModalBg>
-          <Proveedor openModal={openModal} setOpenModal={setOpenModal}/>
+          <Proveedor openModal={openModalProveedor} setOpenModal={setOpenModalProveedor} tipo={tipo}/>
+        </ModalBg>
+      }
+      {
+        openModalEliminar &&
+        <ModalBg>
+          <Eliminar openModal={openModalEliminar} setOpenModal={setOpenModalEliminar}/>
         </ModalBg>
       }
     </div>
