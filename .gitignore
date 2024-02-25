@@ -1,0 +1,53 @@
+# Carpeta de salida
+bin/
+obj/
+
+# Archivos de configuración .NET Core
+*.suo
+*.user
+*.sln.docstates
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Carpeta de paquetes NuGet
+packages/
+
+# Carpeta de resultados de pruebas
+TestResults/
+
+# Carpeta de publicación
+publish/
+
+# Carpeta de archivos temporales
+*.tmp
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+
+# Carpeta de migraciones de Entity Framework
+Migrations/
+
+# Archivos de configuración de Entity Framework
+*.DbContext.cs
+*.DbContextModelSnapshot.cs
+
+# Carpeta de respaldo
+Backup/
+
+# Carpeta de registro
+logs/
+*.log
+
+# Carpeta de configuración de React
+node_modules/
+build/
+dist/
+*.log
+
+# Otros
+.DS_Store
+Thumbs.db
