@@ -1,0 +1,100 @@
+.principal-proveedor{
+  width: 80%;
+  min-width: 1000px;
+  background-color: white;
+  height: 75%;
+  min-height: 500px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.principal-proveedor h2{
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+/* ESTILOS PARA EL BLOQUE DE DATOS */
+.principal-proveedor
+.bloque-datos{
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 20px;
+  padding: 10px;
+}
+
+.bloque-datos
+.label-input{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 70px;
+  margin-bottom: 5px;
+}
+
+.bloque-datos .label-input
+label{
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #807d7d;
+}
+
+.bloque-datos .label-input
+input{
+  width: 95%;
+  height: 30px;
+  border: 1px solid rgb(197, 192, 192);
+  border-radius: 5px;
+  font-size: 16px;
+  text-indent: 10px;
+}
+
+.bloque-datos .label-input
+input:focus{
+  border-color: rgb(197, 192, 192);
+}
+
+
+/* ESTILOS PARA EL FOOTER */
+.principal-proveedor
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.principal-proveedor .footer
+span{
+  font-size: 15px;
+  color: #B4B4B4;
+  
+}
+
+.principal-proveedor .footer
+.botones{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.principal-proveedor .footer .botones
+button{
+  width: 80px;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+}
+
+.principal-proveedor .footer .botones
+button:hover{
+  background-color: #B4B4B4;
+}
