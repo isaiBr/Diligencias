@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import '../assets/Formularios/Proveedor.css'
 import { proveedorContext } from '../Context/ProveedorContext';
-import { axiosGetProveedorPorId, axiosUpdateProveedor } from '../Api/Proveedor';
+import { axiosGetProveedorPorId, axiosPostProveedor, axiosUpdateProveedor } from '../Api/Proveedor';
 import { formatDate } from '../Componentes/DateUtils';
 
 function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
@@ -16,13 +16,13 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
   const {
     proveedor, setProveedor,
     limpiarCampos,
-    paises
+    paises,
+    actualizado, setActualizado
     } = useContext(proveedorContext);
 
     
     //Debe ejecutarse siempre que se cargue la pagina
     useEffect(()=>{
-      console.log(tipo)
       limpiarCampos();
       if(tipo=='nuevo'){
         //Limpiar todos los campos que se van a utilizar
@@ -32,7 +32,6 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
         // console.log(proveedorId);
         axiosGetProveedorPorId(proveedorId)
         .then((response)=>{
-          console.log(response.data);
           setProveedor(response.data);
         })
         .catch((error)=>{
@@ -40,7 +39,6 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
         })
       }
     },[])
-
     
 
   //Lógica para poder realizar las validaciones correctas
@@ -53,6 +51,9 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
   const [correoValido, setCorreoValido] = useState(true);
   const [facturacionValida, setFacturacionValida] = useState(true);
   const [paisValido, setPaisValido] = useState(true);
+
+  const[camposValidos, setCamposValidos] = useState(true);
+  const[camposVacios, setCamposVacios] = useState(false);
   
   const handleInputChange = (campo, valor) =>{
 
@@ -85,15 +86,15 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       if(!enlaceSitioWebRegex.test(valor)) setSitioWebValido(false)
       else setSitioWebValido(true);
     }
-    else if(campo=="telefono"){
+    else if(campo=="numeroTelefonico"){
       if(!soloNumerosRegex.test(valor)) setTelefonoValido(false)
       else setTelefonoValido(true);
     }
-    else if(campo=="correo"){
+    else if(campo=="correoElectronico"){
       if(!correoElectronicoRegex.test(valor)) setCorreoValido(false)
       else setCorreoValido(true);
     }
-    else if(campo=="facturacion"){
+    else if(campo=="facturacionAnual"){
       if(!formatoContableRegex.test(valor)) setFacturacionValida(false)
       else setFacturacionValida(true);
     }
@@ -103,6 +104,7 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       ...proveedor,
       [campo]: valor,
     });
+
   }
 
 
@@ -110,16 +112,74 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
   const onSubmit = (event) =>{
     event.preventDefault();
 
-    axiosUpdateProveedor(proveedorId, proveedor)
-    .then((response)=>{
-      console.log("actualizado");
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-    limpiarCampos();
-    openModal(false);
+    setCamposValidos(true);
+
+    if(!validarCampos()){
+      setCamposValidos(false);
+      return;
+    }
+    setCamposValidos(true);
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+    const body = {
+      "razonSocial": proveedor.razonSocial,
+      "nombreComercial": proveedor.nombreComercial,
+      "identificacionTributaria": proveedor.identificacionTributaria,
+      "numeroTelefonico":proveedor.numeroTelefonico,
+      "correoElectronico": proveedor.correoElectronico,
+      "sitioWeb": proveedor.sitioWeb,
+      "direccionFisica": proveedor.direccionFisica,
+      "pais": proveedor.pais,
+      "facturacionAnual": parseFloat(proveedor.facturacionAnual.replace(/,/g, '')),
+      "fechaEdicion": formattedDate
+    }
+
+    if(tipo==='nuevo'){
+      axiosPostProveedor(body)
+        .then((response)=>{
+          setActualizado(!actualizado);
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+    }
+    else if(tipo==='editar'){
+      axiosUpdateProveedor(proveedorId, body)
+      .then((response)=>{
+        setActualizado(!actualizado);
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
+    cerrarModal();
   }
+
+  const cerrarModal = () =>{
+    limpiarCampos();
+    setOpenModal(false);
+  }
+
+  const validarCampos = () => {
+    // if(proveedor.razonSocial=='' || proveedor.nombreComercialValido==''){
+    //   setCamposVacios(true);
+    //   return false;
+    // };
+    // if(!(razonSocialValida && nombreComercialValido && identificacionValida
+    // && telefonoValido && correoValido && direccionFisicaValida && sitioWebValido
+    // && facturacionValida)){
+    //   setCamposValidos(false);
+    //   return false;
+    // } 
+    
+    // return true;
+
+    return (razonSocialValida && nombreComercialValido && identificacionValida
+      && telefonoValido && correoValido && direccionFisicaValida && sitioWebValido
+      && facturacionValida)
+      &&
+      (proveedor.razonSocial!='' && proveedor.nombreComercialValido!='')
+  };
 
 
   return (
@@ -127,38 +187,38 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       <h2>{tituloModal}</h2>
       <div className='bloque-datos'>
         <div className='label-input'>
-          <label>Razón social</label>
+          <label>Razón social*</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.razonSocial}
+          value={proveedor.razonSocial}
           onChange={(event)=>handleInputChange("razonSocial",event.target.value)}/>
           {!razonSocialValida && <p>El campo solo admite letras y números*</p>}
         </div>
         <div className='label-input'>
-          <label>Nombre comercial</label>
+          <label>Nombre comercial*</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.nombreComercial}
+          value={proveedor.nombreComercial}
           onChange={(event)=>handleInputChange("nombreComercial",event.target.value)}/>
           {!nombreComercialValido && <p>El campo solo admite letras y números*</p>}
         </div>
         <div className='label-input'>
           <label>Identificación tributaria</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.identificacionTributaria}
+          value={proveedor.identificacionTributaria}
           onChange={(event)=>handleInputChange("identificacionTributaria",event.target.value)}/>
           {!identificacionValida && <p>El campo es numérico y debe ser de 11 dígitos*</p>}
         </div>
         <div className='label-input'>
           <label>Número telefónico</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.numeroTelefonico}
-          onChange={(event)=>handleInputChange("telefono",event.target.value)}/>
+          value={proveedor.numeroTelefonico}
+          onChange={(event)=>handleInputChange("numeroTelefonico",event.target.value)}/>
           {!telefonoValido && <p>El campo debe ser un número de teléfono*</p>}
         </div>
         <div className='label-input'>
           <label>Correo electrónico</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.correoElectronico}
-          onChange={(event)=>handleInputChange("correo",event.target.value)}/>
+          value={proveedor.correoElectronico}
+          onChange={(event)=>handleInputChange("correoElectronico",event.target.value)}/>
           {!correoValido && <p>Ingrese un formato de correo válido*</p>}
         </div>
         <div className='label-input'>
@@ -178,14 +238,14 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
         <div className='label-input'>
           <label>Dirección física</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.direccionFisica}
+          value={proveedor.direccionFisica}
           onChange={(event)=>handleInputChange("direccionFisica",event.target.value)}/>
           {!direccionFisicaValida && <p>EL campo solo admite letras y números</p>}
         </div>
         <div className='label-input'>
           <label>Sitio web</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.sitioWeb}
+          value={proveedor.sitioWeb}
           onChange={(event)=>handleInputChange("sitioWeb",event.target.value)}/>
           {!sitioWebValido && <p>EL campo debe ser un enlace válido</p>}
           {sitioWebValido && proveedor.sitioWeb && (
@@ -197,16 +257,17 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
         <div className='label-input'>
           <label>Facturación anual ($)</label>
           <input type='text' disabled={tipo==='ver'}
-          defaultValue={tipo=='nuevo'?null:proveedor.facturacionAnual}
-          onChange={(event)=>handleInputChange("facturacion",event.target.value)}/>
+          value={proveedor.facturacionAnual}
+          onChange={(event)=>handleInputChange("facturacionAnual",event.target.value)}/>
           {!facturacionValida && <p>El campo debe estar en formato contable*</p>}
         </div>
       </div>
       <div className='footer'>
         <span>Última actualización: {formatDate(proveedor.fechaEdicion)}</span>
         <div className='botones'>
-          <button type='submit' onClick={()=>setOpenModal(false)}>Guardar</button>
-          <button type='button' onClick={()=>setOpenModal(false)}>Cancelar</button>
+          {!camposValidos && <p>Corregir campos inválidos o vacíos</p>}
+          {tipo!='ver' && <button type='submit'>{tipo=='editar'?'Actualizar':'Guardar'}</button>}
+          <button type='button' onClick={()=>cerrarModal()}>Cancelar</button>
         </div>
       </div>
     </form>

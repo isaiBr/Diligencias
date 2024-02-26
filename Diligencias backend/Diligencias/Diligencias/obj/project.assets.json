@@ -2438,19 +2438,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ISAI\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Personal\\Proyectos\\EY\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Diligencias.csproj",
+      "projectUniqueName": "C:\\Personal\\EY - Prueba técnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Diligencias.csproj",
       "projectName": "Diligencias",
-      "projectPath": "D:\\Personal\\Proyectos\\EY\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Diligencias.csproj",
-      "packagesPath": "C:\\Users\\ISAI\\.nuget\\packages\\",
-      "outputPath": "D:\\Personal\\Proyectos\\EY\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\obj\\",
+      "projectPath": "C:\\Personal\\EY - Prueba técnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Diligencias.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Personal\\EY - Prueba técnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ISAI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

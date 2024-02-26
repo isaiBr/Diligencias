@@ -13,7 +13,8 @@ function GestionProveedores() {
 
   const {proveedores, setProveedores,
     textProveedorBuscar, setTextProveedorBuscar,
-    provedoresEncontrados
+    provedoresEncontrados,
+    actualizado, setActualizado
     } = useContext(proveedorContext);
 
   const [tipo, setTipo] = useState('nuevo');
@@ -37,7 +38,7 @@ function GestionProveedores() {
     .catch((error)=>{
       console.error(error);
     })
-  },[])
+  },[,actualizado])
 
   //Logica para la tabla de proveedores
   const columns = [
@@ -117,7 +118,8 @@ function GestionProveedores() {
       {
         openModalEliminar &&
         <ModalBg>
-          <Eliminar openModal={openModalEliminar} setOpenModal={setOpenModalEliminar}/>
+          <Eliminar openModal={openModalEliminar} setOpenModal={setOpenModalEliminar}
+          proveedorId={proveedorSelected}/>
         </ModalBg>
       }
     </div>

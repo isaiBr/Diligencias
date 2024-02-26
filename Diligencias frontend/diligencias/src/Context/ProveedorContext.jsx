@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const proveedorContext = createContext();
 function ProveedorProvider ({children}){
 
+  const currentDate = new Date();
+  const fechaFormateada = currentDate.toISOString();
+
   const [proveedores, setProveedores] = useState([]);
   const [proveedor, setProveedor] = useState({
     id:'',
@@ -16,17 +19,10 @@ function ProveedorProvider ({children}){
     direccionFisica: '',
     pais: '',
     facturacionAnual: '',
-    fechaUltimaEdicion: '',
+    fechaEdicion: fechaFormateada,
   });
 
   const limpiarCampos = () =>{
-    const fechaActual = new Date();
-    // Formatea la fecha como dd/mm/yyyy
-    const dia = fechaActual.getDate().toString().padStart(2, '0');
-    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses son indexados desde 0
-    const anio = fechaActual.getFullYear();
-    const fechaFormateada = `${dia}/${mes}/${anio}`;
-
     setProveedor({
       id:'',
       razonSocial: '',
@@ -38,9 +34,11 @@ function ProveedorProvider ({children}){
       direccionFisica: '',
       pais: '',
       facturacionAnual: '',
-      fechaUltimaEdicion: fechaFormateada,
+      fechaEdicion: fechaFormateada,
     })
   }
+
+  const [actualizado, setActualizado] = useState(1);
 
   const paises = [
     { id: 1, nombre: "Perú" },
@@ -69,7 +67,8 @@ function ProveedorProvider ({children}){
           proveedores, setProveedores,
           textProveedorBuscar, setTextProveedorBuscar,
           provedoresEncontrados,
-          paises
+          paises,
+          actualizado, setActualizado
         }}
     >
         {children}

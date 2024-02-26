@@ -97,19 +97,27 @@ input:focus{
 span{
   font-size: 15px;
   color: #827e7e;
-  
 }
+
 
 .principal-proveedor .footer
 .botones{
   display: flex;
   flex-direction: row;
   gap: 10px;
+  height: 45px;
+}
+
+.principal-proveedor .footer .botones
+p{
+  font-size: 14px;
+  color: red;
+  text-align: right;
 }
 
 .principal-proveedor .footer .botones
 button{
-  width: 80px;
+  width: 90px;
   height: 45px;
   border-radius: 10px;
   border: none;

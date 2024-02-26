@@ -42,7 +42,7 @@ export const axiosPostProveedor = (body) =>{
     error=>{
         Promise.reject(error)
     });
-    return axiosClient.get(`/crear`,body);
+    return axiosClient.post(`/crear`,body);
 }
 
 export const axiosUpdateProveedor = (id, body) =>{
@@ -57,7 +57,7 @@ export const axiosUpdateProveedor = (id, body) =>{
     error=>{
         Promise.reject(error)
     });
-    return axiosClient.get(`/editar?id=${id}`, body);
+    return axiosClient.put(`/editar?id=${id}`, body);
 }
 
 export const axiosDeleteProveedor = (id) =>{
@@ -72,5 +72,6 @@ export const axiosDeleteProveedor = (id) =>{
     error=>{
         Promise.reject(error)
     });
-    return axiosClient.get(`/eliminar?id=${id}`);
+    return axiosClient.delete(`/eliminar?id=${id}`);
+    
 }
