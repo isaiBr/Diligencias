@@ -19,7 +19,7 @@
   box-sizing: border-box;
   padding: 20px 10px 20px 10px;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .superior
@@ -40,7 +40,7 @@
 /* ESTILOS PARA LA TABLA */
 .principal-proveedores 
 .lista-proveedores{
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -88,7 +88,7 @@
 }
 
 .principal-proveedores
-button{
+button.opcion{
   background-color: #2E2E38;
   color: white;
   border: none;
@@ -97,7 +97,7 @@ button{
 }
 
 .principal-proveedores
-button:hover{
+button.opcion:hover{
   background-color: #8f8fa2;
 }
 

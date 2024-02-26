@@ -1,76 +1,117 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../assets/Paginas/GestionProveedores.css'
 import { ModalBg } from '../Modales/ModalBg';
 import { Proveedor } from '../Formularios/Proveedor';
 import Eliminar from '../Formularios/Eliminar';
+import { axiosGetProveedores } from '../Api/Proveedor';
+import { proveedorContext } from '../Context/ProveedorContext';
+import { DataGrid } from '@mui/x-data-grid';
+import { formatDate } from '../Componentes/DateUtils';
+
 
 function GestionProveedores() {
 
-  const listaDeElementos = [
-    { id: 1, nombre: 'ZETA', ultimaActualizacion: '25/02/2024' },
-    { id: 2, nombre: 'LIMITED', ultimaActualizacion: '25/02/2024' },
-    { id: 3, nombre: 'OTRA', ultimaActualizacion: '25/02/2024' },
-    { id: 4, nombre: 'ZETA', ultimaActualizacion: '25/02/2024' },
-    { id: 5, nombre: 'LIMITED', ultimaActualizacion: '25/02/2024' },
-    { id: 6, nombre: 'OTRA', ultimaActualizacion: '25/02/2024' },
-    
-    // Agrega más elementos según sea necesario
-  ];
+  const {proveedores, setProveedores,
+    textProveedorBuscar, setTextProveedorBuscar,
+    provedoresEncontrados
+    } = useContext(proveedorContext);
 
   const [tipo, setTipo] = useState('nuevo');
+  const [proveedorSelected, setProveedorSelected] = useState(0);
 
   const [openModalProveedor, setOpenModalProveedor] = useState(false);
   const [openModalEliminar, setOpenModalEliminar] = useState(false);
 
-  const abrirModalProveedores = (tipo) =>{
+
+  const abrirModalProveedores = (tipo, idRow) =>{
     setTipo(tipo);
+    setProveedorSelected(idRow);
     setOpenModalProveedor(true);
+  }
+
+  useEffect(()=>{
+    axiosGetProveedores()
+    .then((response)=>{
+      setProveedores(response.data);
+    })
+    .catch((error)=>{
+      console.error(error);
+    })
+  },[])
+
+  //Logica para la tabla de proveedores
+  const columns = [
+    { field: 'id', headerName: 'Id', width: 90, editable:false},
+    {
+      field: 'nombreComercial',
+      headerName: 'Nombre',
+      align:'center',
+      headerAlign:'center',
+      width: 400,
+      editable: false,
+    },
+    {
+      field: 'fechaEdicion',
+      headerName: 'Fecha de edición',
+      valueFormatter:(params) =>formatDate(params.value),
+      align:'center',
+      headerAlign:'center',
+      width: 200,
+      editable: false,
+    },
+    {
+      field:'buttonColumn',
+      headerName:'Opciones',
+      align:'center',
+      headerAlign:'center',
+      width:690,
+      renderCell:ButtonCell
+    }
+  ];
+
+  function ButtonCell(params) {
+    // Aquí puedes personalizar el contenido de la celda
+    return (
+      <div className='opciones'>
+        <button onClick={()=>abrirModalProveedores('ver', params.row.id)}
+          style={{ width: '50px'}}className='opcion'>Ver</button>
+        <button onClick={()=>abrirModalProveedores('editar',params.row.id)}
+          style={{ width: '70px'}}className='opcion'>Editar</button>
+        <button onClick={()=>setOpenModalEliminar(true)}
+          style={{ width: '80px'}}className='opcion'>Eliminar</button>
+        <button onClick={()=>setOpenModal(true)}
+          style={{ width: '90px'}}className='opcion'>Screening</button>
+      </div>
+    );
   }
 
   return (
     <div className='principal-proveedores'>
       <div className='superior'>
-        <input type='text' className='buscador' placeholder='Ingresar proveedor'/>
+        <h2>Lista de proveedores</h2>
         <button style={{ width: '150px'}}
-          onClick={()=>abrirModalProveedores('nuevo')}>Nuevo proveedor</button>
+          onClick={()=>abrirModalProveedores('nuevo')} className='opcion'>Nuevo proveedor</button>
       </div>
       <div className='lista-proveedores'>
-        <table className='tabla-proveedores'>
-          <thead className='encabezados'>
-            <tr>
-              <th style={{ width: '5%', minWidth:'10px'}}>id</th>
-              <th style={{ width: '35%', minWidth:'200px'}}>Nombre</th>
-              <th style={{ width: '20%', minWidth:'150px'}}>Última edición</th>
-              <th style={{ width: '40%', minWidth:'300px'}}>Opciones</th>
-            </tr>
-          </thead>
-          <tbody className='informacion'>
-            {
-              listaDeElementos.map((elemento) => (
-                <tr key={elemento.id} className='elemento'>
-                  <td className='id' >{elemento.id}</td>
-                  <td className='nombre'>{elemento.nombre}</td>
-                  <td className='ultima-edicion'>{elemento.ultimaActualizacion}</td>
-                  <td className='opciones'>
-                    <button onClick={()=>abrirModalProveedores('ver',elemento)}
-                      style={{ width: '50px'}}>Ver</button>
-                    <button onClick={()=>abrirModalProveedores('editar',elemento)}
-                      style={{ width: '70px'}}>Editar</button>
-                    <button onClick={()=>setOpenModalEliminar(true)}
-                      style={{ width: '80px'}}>Eliminar</button>
-                    <button onClick={()=>setOpenModal(true)}
-                      style={{ width: '90px'}}>Screening</button>
-                  </td>
-                </tr>
-              ))  
-            }
-          </tbody>
-        </table>
+        <DataGrid
+          rows={proveedores}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
       </div>
       {
         openModalProveedor &&
         <ModalBg>
-          <Proveedor openModal={openModalProveedor} setOpenModal={setOpenModalProveedor} tipo={tipo}/>
+          <Proveedor openModal={openModalProveedor} setOpenModal={setOpenModalProveedor} 
+          tipo={tipo} proveedorId={proveedorSelected}/>
         </ModalBg>
       }
       {

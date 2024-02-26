@@ -2,6 +2,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { EstructuraPrincipal } from './Paginas/EstructuraPrincipal'
 import { GestionProveedores } from './Paginas/GestionProveedores'
+import { TablaOpcional } from './Paginas/TablaOpcional'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<EstructuraPrincipal/>}>
           <Route path='/proveedores' element={<GestionProveedores/>}/>
+          <Route path='/prueba' element={<TablaOpcional/>}/>
         </Route>
         <Route path='/*' element={<h1>NOT FOUND</h1>}/>
       </Routes>

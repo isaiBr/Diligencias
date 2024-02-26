@@ -4,48 +4,72 @@ import { useNavigate } from 'react-router-dom';
 const proveedorContext = createContext();
 function ProveedorProvider ({children}){
 
-  const [id, setId] = useState('');
-  const [razonSocial, setRazonSocial] = useState('');
-  const [NombreComercial, setNombreComercial] = useState('ZETA LIMITED');
-  const [identificacionTributaria, setIdentificacionTributaria] = useState('');
-  const [numeroTelefonico, setNumeroTelefonico] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [web, setWeb] = useState('');
-  const [direccion, setDireccion] = useState('');
-  const [pais, setPais] = useState('');
-  const [facturacion, setFacturacion] = useState('');
-  const [fechaActualizacion, setFechaActualizacion] = useState('');
-
+  const [proveedores, setProveedores] = useState([]);
+  const [proveedor, setProveedor] = useState({
+    id:'',
+    razonSocial: '',
+    nombreComercial: '',
+    identificacionTributaria: '',
+    numeroTelefonico: '',
+    correoElectronico: '',
+    sitioWeb: '',
+    direccionFisica: '',
+    pais: '',
+    facturacionAnual: '',
+    fechaUltimaEdicion: '',
+  });
 
   const limpiarCampos = () =>{
-    setId(null);
-    setRazonSocial(null);
-    setNombreComercial(null);
-    setIdentificacionTributaria(null);
-    setNumeroTelefonico(null);
-    setCorreo(null);
-    setWeb(null);
-    setDireccion(null);
-    setPais(null);
-    setFacturacion(0.00);
-    setFechaActualizacion('25/02/2024');
+    const fechaActual = new Date();
+    // Formatea la fecha como dd/mm/yyyy
+    const dia = fechaActual.getDate().toString().padStart(2, '0');
+    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses son indexados desde 0
+    const anio = fechaActual.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+    setProveedor({
+      id:'',
+      razonSocial: '',
+      nombreComercial: '',
+      identificacionTributaria: '',
+      numeroTelefonico: '',
+      correoElectronico: '',
+      sitioWeb: '',
+      direccionFisica: '',
+      pais: '',
+      facturacionAnual: '',
+      fechaUltimaEdicion: fechaFormateada,
+    })
   }
+
+  const paises = [
+    { id: 1, nombre: "Perú" },
+    { id: 2, nombre: "Argentina" },
+    { id: 3, nombre: "Brasil" },
+    { id: 4, nombre: "Colombia" },
+    { id: 5, nombre: "España" },
+    { id: 6, nombre: "Estados Unidos" },
+    { id: 7, nombre: "México" },
+  ];
+
+  //Lógica para el buscador
+  const [textProveedorBuscar, setTextProveedorBuscar] = useState('');
+
+  const provedoresEncontrados = proveedores.filter(
+    (proveedor)=>{
+      return proveedor.nombreComercial.toLowerCase().includes(textProveedorBuscar.toLocaleLowerCase());
+    }
+  )
 
   return (
     <proveedorContext.Provider
         value={{
-          id, setId,
-          razonSocial, setRazonSocial,
-          NombreComercial, setNombreComercial,
-          identificacionTributaria, setIdentificacionTributaria,
-          numeroTelefonico, setNumeroTelefonico,
-          correo, setCorreo,
-          web, setWeb,
-          direccion, setDireccion,
-          pais, setPais,
-          facturacion, setFacturacion,
-          fechaActualizacion, setFechaActualizacion,
-          limpiarCampos
+          proveedor, setProveedor,
+          limpiarCampos,
+          proveedores, setProveedores,
+          textProveedorBuscar, setTextProveedorBuscar,
+          provedoresEncontrados,
+          paises
         }}
     >
         {children}
