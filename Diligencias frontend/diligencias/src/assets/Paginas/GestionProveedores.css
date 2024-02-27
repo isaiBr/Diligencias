@@ -1,51 +1,101 @@
 .principal-proveedores{
   width: 100%;
-  height: 85%;
+  height: 90%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+}
+
+.principal-proveedores
+.lista{
+  width: 55%;
+  height: 100%;
+  min-width: 800px;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.principal-proveedores
+.screening{
+  width: 45%;
+  height: 100%;
+  padding: 90px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 
 /* ESTILOS PARA EL BUSCADOR Y EL BOTON AÑADIR */
 .principal-proveedores
 .superior{
-  width: 90%;
+  width: 100%;
   height: 80px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  align-self: left;
+}
+
+.principal-proveedores .lista
+.superior{
+  min-width: 760px;
+}
+
+
+
+.principal-proveedores .botoneria{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
-  padding: 20px 10px 20px 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  width: 100%;
+  min-width: 760px;
+  margin-bottom: 10px;
 }
 
-.superior
-.buscador{
-  width: 70%;
+/* ESTILOS DEL LISTADO DE OPCIONES */
+
+.principal-proveedores
+.opciones{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.principal-proveedores
+button.opcion{
+  background-color: #2E2E38;
+  color: white;
+  border: none;
   height: 40px;
-  border: 1px solid #2E2E38;
-  border-radius: 30px;
-  text-indent: 20px;
+  border-radius: 10px;
 }
 
-.superior
-.buscador::placeholder{
-  text-indent: 20px;
-} 
+.principal-proveedores
+button.opcion:hover{
+  background-color: #8f8fa2;
+}
+
 
 
 /* ESTILOS PARA LA TABLA */
 .principal-proveedores 
 .lista-proveedores{
-  width: 90%;
+  width: 100%;
+  min-width: 760px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
 }
 
 .principal-proveedores
@@ -76,29 +126,33 @@
   background-color: #f2f2f2;
 }
 
-/* ESTILOS DEL LISTADO DE OPCIONES */
-
+/* SECCION DE SCREENING */
 .principal-proveedores
-.opciones{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+.screening label{
+  font-size: 15px;
+  margin: 10px 0;
+  width: 100%;
 }
 
 .principal-proveedores
-button.opcion{
-  background-color: #2E2E38;
-  color: white;
-  border: none;
-  height: 40px;
-  border-radius: 10px;
+.screening textarea.prov{
+  width: 100%;
+  height: 50px;
+  resize: none;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+  overflow-y: hidden;
 }
 
 .principal-proveedores
-button.opcion:hover{
-  background-color: #8f8fa2;
+.screening button{
+  margin-top: 50px;
+  align-self: center;
 }
+
+
+
 
 

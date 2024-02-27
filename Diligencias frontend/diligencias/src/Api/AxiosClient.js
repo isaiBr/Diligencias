@@ -9,4 +9,13 @@ const axiosClient = axios.create({
   }
 })
 
-export {axiosClient}
+const axiosClientScrapper = axios.create({
+  baseURL:"https://localhost:7004/api/WebScrapper",
+  responseType:"json",
+  headers:{
+    "Accept":"application/json",
+    "Content-type":"application/json"
+  }
+})
+
+export {axiosClient,axiosClientScrapper}
