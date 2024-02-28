@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\controllers\\proveedorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\controllers\\proveedorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\services\\proveedorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\services\\proveedorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\models\\db\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\models\\db\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\services\\proveedorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\services\\proveedorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|c:\\personal\\ey - prueba t\u00E9cnica\\diligencias\\diligencias backend\\diligencias\\diligencias\\models\\db\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD3A45D7-4100-4FE2-88C2-58B5234A602E}|Diligencias\\Diligencias.csproj|solutionrelative:diligencias\\models\\db\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "Diligencias\\Controllers\\UsuarioController.cs",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Models\\DB\\Usuario.cs",
               "RelativeDocumentMoniker": "Diligencias\\Models\\DB\\Usuario.cs",
@@ -59,12 +59,11 @@
               "RelativeToolTip": "Diligencias\\Models\\DB\\Usuario.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-28T06:47:22.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-28T06:47:22.561Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Services\\UsuarioService.cs",
               "RelativeDocumentMoniker": "Diligencias\\Services\\UsuarioService.cs",
@@ -77,33 +76,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ProveedorService.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Services\\ProveedorService.cs",
               "RelativeDocumentMoniker": "Diligencias\\Services\\ProveedorService.cs",
               "ToolTip": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Services\\ProveedorService.cs",
               "RelativeToolTip": "Diligencias\\Services\\ProveedorService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAJAAAA",
+              "ViewState": "AQIAADYAAAAAAAAAAAAYwG4AAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-28T05:49:10.773Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ProveedorController.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Controllers\\ProveedorController.cs",
               "RelativeDocumentMoniker": "Diligencias\\Controllers\\ProveedorController.cs",
               "ToolTip": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Controllers\\ProveedorController.cs",
               "RelativeToolTip": "Diligencias\\Controllers\\ProveedorController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowDMAAAAIAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAIwFsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-26T17:31:21.901Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Personal\\EY - Prueba t\u00E9cnica\\Diligencias\\Diligencias backend\\Diligencias\\Diligencias\\Program.cs",
               "RelativeDocumentMoniker": "Diligencias\\Program.cs",
@@ -111,8 +110,7 @@
               "RelativeToolTip": "Diligencias\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-26T17:31:01.982Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-26T17:31:01.982Z"
             }
           ]
         }

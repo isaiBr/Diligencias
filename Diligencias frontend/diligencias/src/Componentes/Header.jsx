@@ -12,7 +12,7 @@ function Header() {
     <div className='principal-header'>
       <img className='logo-ey' alt='logo EY' src={Logo}/>
       <h1 className='titulo-header'>GESTIÓN DE PROVEEDORES</h1>
-      <button onClick={logout}>Cerrar sesion</button>
+      <button onClick={logout}>Cerrar sesión</button>
     </div>
   )
 }

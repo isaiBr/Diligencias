@@ -229,12 +229,13 @@ function GestionProveedores() {
               initialState={{
                 pagination: {
                   paginationModel: {
-                    pageSize: 5,
+                    pageSize: 10,
                   },
                 },
               }}
-              pageSizeOptions={[5]}
+              pageSizeOptions={[10]}
               disableRowSelectionOnClick
+              autoHeight
             />
           </div>
         </div>
@@ -243,7 +244,7 @@ function GestionProveedores() {
           <label>Proveedor seleccionado</label>
           <textarea className='prov' 
           value={nombreSelected?nombreSelected:'Selecciona un proveedor'} readOnly/>
-          <label>Seleccione una o mas fuentes</label>
+          <label>Seleccione una o más fuentes</label>
           <Select
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"

@@ -228,7 +228,7 @@ function Screening({openModal, setOpenModal,name, fuentes}) {
       })
       .catch(error=>{
         if(error.response){
-          setMensajeError('Se produjo un error con codigo: ',error.response.status)
+          setMensajeError('Se produjo un error con código: ',error.response.status)
         }
         else if(error.request){
           setMensajeError('No hubo respuesta del servidor')
@@ -249,7 +249,7 @@ function Screening({openModal, setOpenModal,name, fuentes}) {
       })
       .catch(error=>{
         if(error.response){
-          setMensajeError('Se produjo un error con codigo: ',error.response.status)
+          setMensajeError('Se produjo un error con código: ',error.response.status)
         }
         else if(error.request){
           setMensajeError('No hubo respuesta del servidor')
@@ -270,7 +270,7 @@ function Screening({openModal, setOpenModal,name, fuentes}) {
       })
       .catch(error=>{
         if(error.response){
-          setMensajeError('Se produjo un error con codigo: ',error.response.status)
+          setMensajeError('Se produjo un error con código: ',error.response.status)
         }
         else if(error.request){
           setMensajeError('No hubo respuesta del servidor')
@@ -353,7 +353,7 @@ function Screening({openModal, setOpenModal,name, fuentes}) {
             {
               value==2 && 
               <div className='fuente ofac'>
-                <p>Numero de Hits: {datosOfac.length}</p>
+                <p>Número de Hits: {datosOfac.length}</p>
                 <div className='resultados-fuente'>
                   <DataGrid
                     rows={datosOfac}
