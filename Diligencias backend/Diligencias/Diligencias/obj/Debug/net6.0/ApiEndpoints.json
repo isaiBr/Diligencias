@@ -89,6 +89,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Diligencias.Controllers.UsuarioController",
+    "Method": "BuscarUsuario",
+    "RelativePath": "api/Usuario/auth",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "correo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Diligencias.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

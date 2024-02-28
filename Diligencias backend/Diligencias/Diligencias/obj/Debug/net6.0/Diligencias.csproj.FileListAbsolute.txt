@@ -67,8 +67,13 @@ D:\Personal\Proyectos\EY\Diligencias\Diligencias backend\Diligencias\Diligencias
 D:\Personal\Proyectos\EY\Diligencias\Diligencias backend\Diligencias\Diligencias\obj\Debug\net6.0\Diligencias.pdb
 D:\Personal\Proyectos\EY\Diligencias\Diligencias backend\Diligencias\Diligencias\obj\Debug\net6.0\Diligencias.genruntimeconfig.cache
 D:\Personal\Proyectos\EY\Diligencias\Diligencias backend\Diligencias\Diligencias\obj\Debug\net6.0\ref\Diligencias.dll
+C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\release\web.config
 C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\appsettings.Development.json
 C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\appsettings.json
+C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\release\appsettings.Development.json
+C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\release\appsettings.json
+C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\release\Diligencias.deps.json
+C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\release\Diligencias.runtimeconfig.json
 C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\Diligencias.exe
 C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\Diligencias.deps.json
 C:\Personal\EY - Prueba técnica\Diligencias\Diligencias backend\Diligencias\Diligencias\bin\Debug\net6.0\Diligencias.runtimeconfig.json

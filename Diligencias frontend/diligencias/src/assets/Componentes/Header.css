@@ -22,3 +22,17 @@
   font-size: 15px;
   color: white;
 }
+
+.principal-header
+button{
+  border: none;
+  border-radius: 2px;
+  height: 30px;
+  width: 110px;
+  margin-left: 20px;
+}
+
+.principal-header
+button:hover{
+  background-color: #B4B4B4;
+}

@@ -20,6 +20,7 @@ import { Alert } from '@mui/material';
 import { AlertBg } from '../Modales/AlertBg';
 import {Alerta} from '../Alertas/Alerta';
 import Loading from '../Componentes/Loading';
+import { Error } from '../Componentes/Error';
 
 
 function GestionProveedores() {
@@ -39,6 +40,7 @@ function GestionProveedores() {
 
   const[isLoading, setIsLoading] = useState(false);
   const[isError, setIsError] = useState(false);
+  const [mensajeError, setMensajeError] = useState('');
 
   useEffect(()=>{
     setIsLoading(true)
@@ -185,7 +187,6 @@ function GestionProveedores() {
     const realizarEliminacion = (id) =>{
       if(id == null){
         setMensajeAlerta('Debe seleccionar un proveedor')
-        setP
         setOpenAlert(true);
         return
       }
@@ -197,6 +198,9 @@ function GestionProveedores() {
     <div className='principal-proveedores'>
       {isLoading?
         <Loading/>
+        :
+        isError?
+        <Error mensaje={mensajeError} boton={false}/>
         :
         <>
         <div className='lista'>

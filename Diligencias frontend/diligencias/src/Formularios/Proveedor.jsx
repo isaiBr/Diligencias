@@ -58,12 +58,12 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId, setOpenAlert,setM
   const handleInputChange = (campo, valor) =>{
 
     const numericoCantRegex = /^(\d{11})?$/;
-    const alfanumericoRegex = /^[a-zA-Z0-9]*$/;  // Permite letras y números, incluyendo cadena vacía
-    const alfanumericoConEspaciosRegex = /^[a-zA-Z0-9\s]*$/;  // Permite letras, números y espacios, incluyendo cadena vacía
-    const soloNumerosRegex = /^\d*$/;  // Permite solo números, incluyendo cadena vacía
-    const correoElectronicoRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  // No cambia, ya permite cadena vacía
-    const enlaceSitioWebRegex = /^(ftp|http|https)?:\/\/[^ "]*$/;  // Permite protocolos y enlaces sin caracteres, incluyendo cadena vacía
-    const formatoContableRegex = /^\d{1,3}(,\d{3})*(\.\d{2})?$/;  // Permite formato contable, incluyendo cadena vacía
+    const alfanumericoRegex = /^[a-zA-Z0-9]*$/;
+    const alfanumericoConEspaciosRegex = /^[a-zA-Z0-9\s]*$/; 
+    const soloNumerosRegex = /^\d*$/; 
+    const correoElectronicoRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+    const enlaceSitioWebRegex = /^(ftp|http|https)?:\/\/[^ "]*$/;  
+    const formatoContableRegex = /^\d{1,3}(,\d{3})*(\.\d{2})?$/; 
 
 
 
@@ -131,7 +131,8 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId, setOpenAlert,setM
       "sitioWeb": proveedor.sitioWeb,
       "direccionFisica": proveedor.direccionFisica,
       "pais": proveedor.pais,
-      "facturacionAnual": parseFloat(proveedor.facturacionAnual.replace(/,/g, '')),
+      "facturacionAnual": (typeof proveedor.facturacionAnual === 'string'?
+        parseFloat(proveedor.facturacionAnual.replace(/,/g, '')):proveedor.facturacionAnual),
       "fechaEdicion": formattedDate
     }
 
