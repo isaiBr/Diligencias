@@ -6,7 +6,7 @@ import Eliminar from '../Formularios/Eliminar';
 import { axiosGetProveedores } from '../Api/Proveedor';
 import { proveedorContext } from '../Context/ProveedorContext';
 import { DataGrid } from '@mui/x-data-grid';
-import { formatDate } from '../Componentes/DateUtils';
+import { formatDate, formatDateTime } from '../Componentes/DateUtils';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -107,7 +107,7 @@ function GestionProveedores() {
     {
       field: 'fechaEdicion',
       headerName: 'Fecha de edición',
-      valueFormatter:(params) =>formatDate(params.value),
+      valueFormatter:(params) =>formatDateTime(params.value),
       align:'center',
       headerAlign:'center',
       width: 200,

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import '../assets/Formularios/Proveedor.css'
 import { proveedorContext } from '../Context/ProveedorContext';
 import { axiosGetProveedorPorId, axiosPostProveedor, axiosUpdateProveedor } from '../Api/Proveedor';
-import { formatDate } from '../Componentes/DateUtils';
+import { formatDate, formatDateTime } from '../Componentes/DateUtils';
 
 function Proveedor({openModal, setOpenModal,tipo, proveedorId, setOpenAlert,setMensajeAlerta}) {
 
@@ -271,7 +271,7 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId, setOpenAlert,setM
         </div>
       </div>
       <div className='footer'>
-        <span>Última actualización: {formatDate(proveedor.fechaEdicion)}</span>
+        <span>Última actualización: {formatDateTime(proveedor.fechaEdicion)}</span>
         <div className='botones'>
           {!camposValidos && <p>Campos obligatorios sin llenar o invalidos</p>}
           {tipo!='ver' && <button type='submit'>{tipo=='editar'?'Actualizar':'Guardar'}</button>}

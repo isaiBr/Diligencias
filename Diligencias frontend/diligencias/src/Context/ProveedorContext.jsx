@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React, { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -5,7 +6,8 @@ const proveedorContext = createContext();
 function ProveedorProvider ({children}){
 
   const currentDate = new Date();
-  const fechaFormateada = currentDate.toISOString();
+  // const fechaFormateada = currentDate.toISOString();
+  const fechaFormateada = format(currentDate, 'yyyy-MM-dd HH:mm:ss', { timeZone: 'America/Lima' });
 
   const [proveedores, setProveedores] = useState([]);
   const [proveedor, setProveedor] = useState({

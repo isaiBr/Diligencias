@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Diligencias")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b26b6d3f25dfcf88d10138d99b88c1f21dca4bc8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7d5a85da320ac1a1aec4341ba81b60d228523c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Diligencias")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Diligencias")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

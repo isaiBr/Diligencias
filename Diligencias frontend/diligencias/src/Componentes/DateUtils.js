@@ -3,4 +3,10 @@ const formatDate = (dateString) => {
   return formattedDate;
 };
 
-export { formatDate };
+const formatDateTime = (dateString) => {
+  const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'};
+  const formattedDateTime = new Date(dateString).toLocaleString('es-ES', options);
+  return formattedDateTime;
+};
+
+export { formatDateTime , formatDate};
