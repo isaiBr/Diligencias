@@ -2,25 +2,23 @@
   width: 80%;
   min-width: 1000px;
   background-color: white;
-  height: 75%;
-  min-height: 500px;
+  height: 500px;
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 10px 20px 30px 20px;
+  padding: 10px 20px 10px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .principal-proveedor h2{
   font-size: 18px;
-  margin-bottom: 0;
 }
 
 /* ESTILOS PARA EL BLOQUE DE DATOS */
 .principal-proveedor
 .bloque-datos{
-  height: 70%;
+  min-height: 350px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -91,12 +89,14 @@ input:focus{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .principal-proveedor .footer
 span{
   font-size: 15px;
   color: #827e7e;
+  margin-top: 10px;
 }
 
 

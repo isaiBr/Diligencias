@@ -16,6 +16,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { Screening } from '../Formularios/Screening';
+import { Alert } from '@mui/material';
+import { AlertBg } from '../Modales/AlertBg';
+import {Alerta} from '../Alertas/Alerta';
+import Loading from '../Componentes/Loading';
 
 
 function GestionProveedores() {
@@ -33,20 +37,33 @@ function GestionProveedores() {
   const [openModalEliminar, setOpenModalEliminar] = useState(false);
   const [openModalScreening, setOpenModalScreening] = useState(false);
 
-
-  const abrirModalProveedores = (tipo, idRow) =>{
-    setTipo(tipo);
-    setProveedorSelected(idRow);
-    setOpenModalProveedor(true);
-  }
+  const[isLoading, setIsLoading] = useState(false);
+  const[isError, setIsError] = useState(false);
 
   useEffect(()=>{
+    setIsLoading(true)
+    setIsError(false)
     axiosGetProveedores()
     .then((response)=>{
-      setProveedores(response.data);
+      const sortedRows = [...response.data].sort((a, b) => {
+        const fechaA = new Date(a.fechaEdicion);
+        const fechaB = new Date(b.fechaEdicion);
+      
+        return fechaB - fechaA; // Ordenar de mayor a menor
+      });
+      setProveedores(sortedRows)
     })
     .catch((error)=>{
-      console.error(error);
+      if(error.response){
+        setMensajeError('Se produjo un error con codigo: ',error.response.status)
+      }
+      else if(error.request){
+        setMensajeError('No hubo respuesta del servidor')
+      }
+      setIsError(true);
+    })
+    .finally(()=>{
+      setIsLoading(false)
     })
   },[,actualizado])
 
@@ -137,91 +154,137 @@ function GestionProveedores() {
       );
     };
 
+    const [openAlert, setOpenAlert] = useState(false);
+    const [mensajeAlerta, setMensajeAlerta] = useState('');
+
+    const abrirModalProveedores = (tipo, idRow) =>{
+      if(idRow == null && tipo!='nuevo'){
+        setMensajeAlerta('Debe seleccionar un proveedor')
+        setOpenAlert(true);
+        return
+      }
+      setTipo(tipo);
+      setProveedorSelected(idRow);
+      setOpenModalProveedor(true);
+    }
+
+    const realizarScreening = () =>{
+      if(nombreSelected == null){
+        setMensajeAlerta('Debe seleccionar un proveedor')
+        setOpenAlert(true);
+        return
+      }
+      if(fuentes.length<1){
+        setMensajeAlerta('Debe seleccionar minimo una fuente')
+        setOpenAlert(true);
+        return
+      }
+      setOpenModalScreening(true);
+    }
+
+    const realizarEliminacion = (id) =>{
+      if(id == null){
+        setMensajeAlerta('Debe seleccionar un proveedor')
+        setP
+        setOpenAlert(true);
+        return
+      }
+      setProveedorSelected(id);
+      setOpenModalEliminar(true);
+    }
+
   return (
     <div className='principal-proveedores'>
-      <div className='lista'>
-        <div className='superior'>
-          <h2>Lista de proveedores</h2>
-        </div>
-        <div className='botoneria'>
-          <div className='agregar'>
-            <button style={{ width: '150px'}}
-              onClick={()=>abrirModalProveedores('nuevo')} className='opcion'>Nuevo proveedor</button>
+      {isLoading?
+        <Loading/>
+        :
+        <>
+        <div className='lista'>
+          <div className='superior'>
+            <h2>Lista de proveedores</h2>
           </div>
-          <div className='opciones'>
-            <button onClick={()=>abrirModalProveedores('ver', selectedRowId)}
-              style={{ width: '50px'}}className='opcion'>Ver</button>
-            <button onClick={()=>abrirModalProveedores('editar',selectedRowId)}
-              style={{ width: '70px'}}className='opcion'>Editar</button>
-            <button onClick={()=>setOpenModalEliminar(true)}
-              style={{ width: '80px'}}className='opcion'>Eliminar</button>
-            
+          <div className='botoneria'>
+            <div className='agregar'>
+              <button style={{ width: '150px'}}
+                onClick={()=>abrirModalProveedores('nuevo')} className='opcion'>Nuevo proveedor</button>
+            </div>
+            <div className='opciones'>
+              <button onClick={()=>abrirModalProveedores('ver', selectedRowId)}
+                style={{ width: '50px'}}className='opcion'>Ver</button>
+              <button onClick={()=>abrirModalProveedores('editar',selectedRowId)}
+                style={{ width: '70px'}}className='opcion'>Editar</button>
+              <button onClick={()=>realizarEliminacion(selectedRowId)}
+                style={{ width: '80px'}}className='opcion'>Eliminar</button>
+              
+            </div>
           </div>
-        </div>
-        <div className='lista-proveedores'>
-          <DataGrid
-            rows={proveedores}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+          <div className='lista-proveedores'>
+            <DataGrid
+              rows={proveedores}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
                 },
-              },
-            }}
-            pageSizeOptions={[5]}
-            disableRowSelectionOnClick
-          />
+              }}
+              pageSizeOptions={[5]}
+              disableRowSelectionOnClick
+            />
+          </div>
         </div>
-      </div>
-      <div className='screening'>
-        <h2>Screening</h2>
-        <label>Proveedor seleccionado</label>
-        <textarea className='prov' 
-        value={nombreSelected?nombreSelected:'Selecciona un proveedor'} readOnly/>
-        <label>Seleccione una o mas fuentes</label>
-        <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
-          multiple
-          value={fuentes}
-          onChange={handleChange}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-          sx={{width:'100%'}}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, fuentes, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-        <button onClick={()=>setOpenModalScreening(true)}
-            style={{ width: '90px'}}className='opcion'>Screening</button>
-      </div>
-      
+        <div className='screening'>
+          <h2>Screening</h2>
+          <label>Proveedor seleccionado</label>
+          <textarea className='prov' 
+          value={nombreSelected?nombreSelected:'Selecciona un proveedor'} readOnly/>
+          <label>Seleccione una o mas fuentes</label>
+          <Select
+            labelId="demo-multiple-chip-label"
+            id="demo-multiple-chip"
+            multiple
+            value={fuentes}
+            onChange={handleChange}
+            renderValue={(selected) => (
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            )}
+            MenuProps={MenuProps}
+            sx={{width:'100%'}}
+          >
+            {names.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, fuentes, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+          <button onClick={()=>realizarScreening()}
+              style={{ width: '90px'}}className='opcion'>Screening</button>
+        </div>
+        </>
+      }
       {
         openModalProveedor &&
         <ModalBg>
           <Proveedor openModal={openModalProveedor} setOpenModal={setOpenModalProveedor} 
-          tipo={tipo} proveedorId={proveedorSelected}/>
+          tipo={tipo} proveedorId={proveedorSelected} 
+          setOpenAlert={setOpenAlert} setMensajeAlerta={setMensajeAlerta}/>
         </ModalBg>
       }
       {
         openModalEliminar &&
         <ModalBg>
           <Eliminar openModal={openModalEliminar} setOpenModal={setOpenModalEliminar}
-          proveedorId={proveedorSelected}/>
+          proveedorId={proveedorSelected} 
+          setOpenAlert={setOpenAlert} setMensajeAlerta={setMensajeAlerta}/>
         </ModalBg>
       }
       {
@@ -231,6 +294,14 @@ function GestionProveedores() {
           name={nombreSelected} fuentes={fuentes}/>
         </ModalBg>
       }
+      {
+        openAlert &&
+        <AlertBg>
+          <Alerta openAlert={openAlert} setOpenAlert={setOpenAlert} 
+          mensajeAlerta={mensajeAlerta}/>
+        </AlertBg>
+      }
+
     </div>
   )
 }

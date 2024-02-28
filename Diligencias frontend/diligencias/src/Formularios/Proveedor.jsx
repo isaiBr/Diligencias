@@ -4,7 +4,7 @@ import { proveedorContext } from '../Context/ProveedorContext';
 import { axiosGetProveedorPorId, axiosPostProveedor, axiosUpdateProveedor } from '../Api/Proveedor';
 import { formatDate } from '../Componentes/DateUtils';
 
-function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
+function Proveedor({openModal, setOpenModal,tipo, proveedorId, setOpenAlert,setMensajeAlerta}) {
 
 
   const tituloModal = 
@@ -57,13 +57,14 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
   
   const handleInputChange = (campo, valor) =>{
 
-    const numericoCantRegex = /^\d{11}$/
-    const alfanumericoRegex =/^[a-zA-Z0-9]+$/;
-    const alfanumericoConEspaciosRegex = /^[a-zA-Z0-9\s]+$/;
-    const soloNumerosRegex = /^\d+$/;
-    const correoElectronicoRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const enlaceSitioWebRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-    const formatoContableRegex = /^\d{1,3}(,\d{3})*(\.\d{2})?$/;
+    const numericoCantRegex = /^(\d{11})?$/;
+    const alfanumericoRegex = /^[a-zA-Z0-9]*$/;  // Permite letras y números, incluyendo cadena vacía
+    const alfanumericoConEspaciosRegex = /^[a-zA-Z0-9\s]*$/;  // Permite letras, números y espacios, incluyendo cadena vacía
+    const soloNumerosRegex = /^\d*$/;  // Permite solo números, incluyendo cadena vacía
+    const correoElectronicoRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  // No cambia, ya permite cadena vacía
+    const enlaceSitioWebRegex = /^(ftp|http|https)?:\/\/[^ "]*$/;  // Permite protocolos y enlaces sin caracteres, incluyendo cadena vacía
+    const formatoContableRegex = /^\d{1,3}(,\d{3})*(\.\d{2})?$/;  // Permite formato contable, incluyendo cadena vacía
+
 
 
     if(campo=="identificacionTributaria"){
@@ -71,11 +72,11 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       else setIdentificacionValida(true);
     }
     else if(campo=="razonSocial"){
-      if(!alfanumericoRegex.test(valor)) setRazonSocialValida(false)
+      if(!alfanumericoConEspaciosRegex.test(valor)) setRazonSocialValida(false)
       else setRazonSocialValida(true);
     }
     else if(campo=="nombreComercial"){
-      if(!alfanumericoRegex.test(valor)) setNombreComercialValido(false)
+      if(!alfanumericoConEspaciosRegex.test(valor)) setNombreComercialValido(false)
       else setNombreComercialValido(true);
     }
     else if(campo=="direccionFisica"){
@@ -138,6 +139,8 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       axiosPostProveedor(body)
         .then((response)=>{
           setActualizado(!actualizado);
+          setMensajeAlerta('Proveedor insertado correctamente')
+          setOpenAlert(true)
         })
         .catch((error)=>{
           console.log(error);
@@ -147,6 +150,8 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       axiosUpdateProveedor(proveedorId, body)
       .then((response)=>{
         setActualizado(!actualizado);
+        setMensajeAlerta('Proveedor actualizado correctamente')
+        setOpenAlert(true)
       })
       .catch((error)=>{
         console.log(error);
@@ -178,7 +183,9 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       && telefonoValido && correoValido && direccionFisicaValida && sitioWebValido
       && facturacionValida)
       &&
-      (proveedor.razonSocial!='' && proveedor.nombreComercialValido!='')
+      (proveedor.razonSocial!='' && proveedor.nombreComercialValido!='' 
+      && proveedor.identificacionTributaria!='' && proveedor.facturacionAnual!=''
+      && proveedor.correoElectronico!='')
   };
 
 
@@ -201,7 +208,7 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
           {!nombreComercialValido && <p>El campo solo admite letras y números*</p>}
         </div>
         <div className='label-input'>
-          <label>Identificación tributaria</label>
+          <label>Identificación tributaria*</label>
           <input type='text' disabled={tipo==='ver'}
           value={proveedor.identificacionTributaria}
           onChange={(event)=>handleInputChange("identificacionTributaria",event.target.value)}/>
@@ -215,14 +222,14 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
           {!telefonoValido && <p>El campo debe ser un número de teléfono*</p>}
         </div>
         <div className='label-input'>
-          <label>Correo electrónico</label>
+          <label>Correo electrónico*</label>
           <input type='text' disabled={tipo==='ver'}
           value={proveedor.correoElectronico}
           onChange={(event)=>handleInputChange("correoElectronico",event.target.value)}/>
           {!correoValido && <p>Ingrese un formato de correo válido*</p>}
         </div>
         <div className='label-input'>
-          <label>País</label>
+          <label>País*</label>
           <select disabled={tipo==='ver'}
             id="pais"
             name="pais"
@@ -255,9 +262,9 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
           )}
         </div>
         <div className='label-input'>
-          <label>Facturación anual ($)</label>
+          <label>Facturación anual ($)*</label>
           <input type='text' disabled={tipo==='ver'}
-          value={proveedor.facturacionAnual}
+          value={proveedor.facturacionAnual.toLocaleString("en-US", { useGrouping: true, minimumFractionDigits: 2 })}
           onChange={(event)=>handleInputChange("facturacionAnual",event.target.value)}/>
           {!facturacionValida && <p>El campo debe estar en formato contable*</p>}
         </div>
@@ -265,7 +272,7 @@ function Proveedor({openModal, setOpenModal,tipo, proveedorId}) {
       <div className='footer'>
         <span>Última actualización: {formatDate(proveedor.fechaEdicion)}</span>
         <div className='botones'>
-          {!camposValidos && <p>Corregir campos inválidos o vacíos</p>}
+          {!camposValidos && <p>Campos obligatorios sin llenar o invalidos</p>}
           {tipo!='ver' && <button type='submit'>{tipo=='editar'?'Actualizar':'Guardar'}</button>}
           <button type='button' onClick={()=>cerrarModal()}>Cancelar</button>
         </div>

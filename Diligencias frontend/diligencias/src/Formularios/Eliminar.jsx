@@ -5,7 +5,7 @@ import { axiosDeleteProveedor } from '../Api/Proveedor';
 import { proveedorContext } from '../Context/ProveedorContext';
 
 
-function Eliminar({openModal, setOpenModal,proveedorId}) {
+function Eliminar({openModal, setOpenModal,proveedorId,setOpenAlert,setMensajeAlerta}) {
   const {
     actualizado, setActualizado,
     limpiarCampos
@@ -15,6 +15,8 @@ function Eliminar({openModal, setOpenModal,proveedorId}) {
     axiosDeleteProveedor(proveedorId)
     .then((response)=>{
       setActualizado(!actualizado);
+      setMensajeAlerta('Proveedor eliminado correctamente')
+      setOpenAlert(true)
       cerrarModal();
     })
     .catch((error)=>{
